@@ -1,0 +1,1 @@
+#To make resume_analyzer folder as a Python Package we use this file
