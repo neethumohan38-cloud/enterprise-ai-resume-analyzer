@@ -1,6 +1,6 @@
 import json
-from resume_analyzer.models import CandidateEvaluationResult,Candidate
-from resume_analyzer.evaluation import candidate_evaluation
+from resume_analyzer.models import CandidateEvaluationResultModel,CandidateModel
+from resume_analyzer.evaluation import Evaluation
 # min experience : 7 yrs
 # required skills : Python, .Net and Angular, AWS
 # Find matching skills, missing skills, matching score with candidate skills
@@ -12,9 +12,15 @@ def main():
     # open the candidate.json to get the info
     try:
         with open("candidate.json","r") as file:
-            candidate:Candidate = json.load(file)
-            result:CandidateEvaluationResult = candidate_evaluation(candidate,required_skills,min_experience)
+            data = json.load(file)
+            candidate = CandidateModel.model_validate(data)
+            evaluation = Evaluation(candidate,required_skills,min_experience)
+            output = evaluation.candidate_evaluation()
+            result= CandidateEvaluationResultModel.model_validate(output)
         print(result)
+        print(result.model_dump())
+        print(result.model_dump_json())
+
     except FileNotFoundError:
         print("File not Found!!")
 

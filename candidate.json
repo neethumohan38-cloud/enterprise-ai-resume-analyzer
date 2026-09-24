@@ -1,10 +1,16 @@
 {
-    "name": "Neethu",
-    "experience": -8,
+    "name": "Neethu    ",
+    "experience": 8,
     "skills": [
         ".Net",
         "Angular",
         "AWS",
         "Docker"
-    ]
+    ],
+    "education":{
+        "degree" : "BTech",
+        "university" : "Anna University",
+        "year_of_passing" : 2015
+
+    }
 }
